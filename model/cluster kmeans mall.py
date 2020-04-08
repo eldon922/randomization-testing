@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Apr  1 11:02:40 2020
-
-@author: eldon
-"""
 
 import pandas as pd
 import numpy as np
@@ -28,8 +23,16 @@ X = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].values
 
 # ============================================================================
 
+pd.options.display.max_columns = 10
+print(df.describe())
+print()
+
+# ----------------------------------------------------------------------------
+
 sns.pairplot(df, vars = df.columns[2:])
 plt.show()
+
+# ----------------------------------------------------------------------------
 
 plt.title("Heatmap of Variables Correlation")
 sns.heatmap(df.corr(), annot = True, cmap = 'RdYlGn')

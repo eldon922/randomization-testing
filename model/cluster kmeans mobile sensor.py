@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 24 14:43:35 2020
-
-@author: eldon
-"""
 
 import pandas as pd
 import numpy as np
@@ -20,7 +15,7 @@ from time import time
 
 # ============================================================================
 
-df = pd.read_csv('projected_train.csv', delimiter = ',')
+df = pd.read_csv('train.csv', delimiter = ',')
 X = df.drop(['subject', 'Activity'], axis = 1).values
 
 # ----------------------------------------------------------------------------
@@ -30,6 +25,11 @@ pca = PCA(n_components = 2)
 X = pca.fit_transform(X)
 
 # ============================================================================
+
+print(df.describe())
+print()
+
+# ----------------------------------------------------------------------------
 
 plt.title("Activities Count")
 ax = sns.countplot(x = "Activity", data = df)

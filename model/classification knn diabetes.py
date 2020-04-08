@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Apr  1 13:10:15 2020
-
-@author: eldon
-"""
 
 import pandas as pd
 import numpy as np
@@ -26,18 +21,24 @@ df = pd.read_csv('diabetes.csv', delimiter = ',')
 X = df.drop('Outcome', axis = 1).values
 y = df['Outcome'].values
 
+# ============================================================================
+
 pd.options.display.max_columns = 10
 print(df.describe())
 print()
 
-# ============================================================================
+# ----------------------------------------------------------------------------
 
 plt.title("Number of Diabetes Cases")
 sns.countplot(x = "Outcome", data = df)
 plt.show()
 
+# ----------------------------------------------------------------------------
+
 sns.pairplot(df, hue = "Outcome", vars = df.columns[:-1])
 plt.show()
+
+# ----------------------------------------------------------------------------
 
 plt.title("Heatmap of Variables Correlation")
 sns.heatmap(df.corr(), annot = True, cmap = 'RdYlGn')

@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 24 14:43:35 2020
-
-@author: eldon
-"""
 
 import pandas as pd
 import numpy as np
@@ -47,8 +42,17 @@ y_test = le.fit_transform(label_np_test)
 
 # ============================================================================
 
+df_train_test = df_train.append(df_test)
+
+# ----------------------------------------------------------------------------
+
+print(df_train_test.describe())
+print()
+
+# ----------------------------------------------------------------------------
+
 plt.title("Activities Count")
-sns.countplot(x = "Activity", data=df_train.append(df_test))
+sns.countplot(x = "Activity", data=df_train_test)
 plt.show()
 
 # ============================================================================
