@@ -52,7 +52,8 @@ print()
 # ----------------------------------------------------------------------------
 
 plt.title("Activities Count")
-sns.countplot(x = "Activity", data=df_train_test)
+ax = sns.countplot(x = "Activity", data = df_train_test)
+ax.set_xticklabels(ax.get_xticklabels(), rotation = 20, ha="right")
 plt.show()
 
 # ============================================================================
