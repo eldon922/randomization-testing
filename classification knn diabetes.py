@@ -21,9 +21,8 @@ df = pd.read_csv('diabetes.csv', delimiter = ',')
 X = df.drop('Outcome', axis = 1).values
 y = df['Outcome'].values
 
-# X = X @ np.random.rand(X.shape[1],X.shape[1])
 # ============================================================================
-"""
+
 pd.options.display.max_columns = 10
 print(df.describe())
 print()
@@ -53,9 +52,9 @@ plt.savefig('heatmap_diabetes_randomisasi.png', dpi=300)
 plt.show()
 
 # ============================================================================
-"""
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42, stratify = y)
-"""
+
 # ----------------------------------------------------------------------------
 
 neighbors = np.arange(1, 21)
@@ -105,7 +104,7 @@ print("K terbaik adalah " + str(k_highest_test_accuracy) + " dengan akurasi test
 print()
 
 # ============================================================================
-"""
+
 start_time = time()
 
 knn = KNeighborsClassifier(n_neighbors = 16)
@@ -125,11 +124,10 @@ y_pred = knn.predict(X_test)
 
 print("--- Waktu yang dibutuhkan untuk melakukan prediksi adalah %s detik ---" % (time() - start_time))
 print()
-"""
+
 plt.title('Confusion Matrix pada Test Set Dataset Randomisasi')
 sns.heatmap(confusion_matrix(y_pred, y_test), annot = True, annot_kws={"size": 16}, fmt='g')
 plt.savefig('confusion_diabetes_randomisasi.png', dpi=300)
 plt.show()
 
 # ============================================================================
-"""

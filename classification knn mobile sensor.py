@@ -16,13 +16,10 @@ from time import time
 
 # ============================================================================
 
-df_train = pd.read_csv('projected2_train.csv', delimiter = ',')
+df_train = pd.read_csv('train.csv', delimiter = ',')
 
 X_train = df_train.drop(['subject', 'Activity'],axis = 1).values
 label_np = df_train['Activity'].values
-
-# X = np.random.rand(X_train.shape[1],X_train.shape[1])
-# X_train = X_train @ X
 
 # ----------------------------------------------------------------------------
 
@@ -33,12 +30,10 @@ y_train = le.fit_transform(label_np)
 
 # ============================================================================
 
-df_test = pd.read_csv('projected2_test.csv', delimiter = ',')
+df_test = pd.read_csv('test.csv', delimiter = ',')
 
 X_test = df_test.drop(['subject', 'Activity'], axis = 1).values
 label_np_test = df_test['Activity'].values
-
-# X_test = X_test @ X
 
 # ----------------------------------------------------------------------------
 

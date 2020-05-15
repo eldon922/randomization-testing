@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 
+# Dua baris dibawah adalah kode untuk menghitung ADJUSTED RAND INDEX
+# variabel labels_asli dan labels_proyeksi perlu diambil dari hasil
+# clustering yang sudah dilakukan. Tips: dapat menggunakan fitur copy/paste
+# variabel pada perangkat lunak Spyder di tab Variable explorer
+
 # from sklearn.metrics import adjusted_rand_score
+# adjusted_rand_score(labels_asli, labels_proyeksi)
 
-# adjusted_rand_score(labels_true, labels_pred)
 
-
+# Berikut adalah kode untuk menguji hasil Random Projection Perturbation
+# apakah berada pada rentang jarak Euclidean yang benar
 import pandas as pd
 
 from scipy.spatial import distance
@@ -24,8 +30,8 @@ for i in range(0, asli.shape[0]):
         if (1-eps) * d_asli**2 > d_projected**2 or d_projected**2 > (1+eps) * d_asli**2:
             print("------------ERROR: " + str(i) + " " + str(j) + " ------------------")
             sys.exit()
-        # else:
-        #     print(str(i) + " " + str(j) + ": " + str(d_asli) + " " + str(d_projected))
+        else:
+            print(str(i) + " " + str(j) + ": " + str(d_asli) + " " + str(d_projected))
             
 print("ok")
             

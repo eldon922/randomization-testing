@@ -15,21 +15,19 @@ from time import time
 
 # ============================================================================
 
-df = pd.read_csv('projected2_train.csv', delimiter = ',')
-X = df.values
-
-# X = X @ np.random.rand(X.shape[1],427)
+df = pd.read_csv('train.csv', delimiter = ',')
+X = df.drop(['subject', 'Activity'], axis = 1).values
 
 # ----------------------------------------------------------------------------
 
-# start_time = time()
+start_time = time()
 
-# from sklearn.decomposition import PCA
-# pca = PCA(n_components = 2)
-# X = pca.fit_transform(X)
+from sklearn.decomposition import PCA
+pca = PCA(n_components = 2)
+X = pca.fit_transform(X)
 
-# print("--- Waktu yang dibutuhkan untuk PCA adalah %s detik ---" % (time() - start_time))
-# print()
+print("--- Waktu yang dibutuhkan untuk PCA adalah %s detik ---" % (time() - start_time))
+print()
 
 # ============================================================================
 
@@ -38,21 +36,21 @@ print()
 
 # ----------------------------------------------------------------------------
 
-# plt.title("Activities Count")
-# ax = sns.countplot(x = "Activity", data = df)
-# ax.set_xticklabels(ax.get_xticklabels(), rotation = 20, ha="right")
-# plt.show()
+plt.title("Activities Count")
+ax = sns.countplot(x = "Activity", data = df)
+ax.set_xticklabels(ax.get_xticklabels(), rotation = 20, ha="right")
+plt.show()
 
 # ----------------------------------------------------------------------------
 
-# df_pca = pd.DataFrame(X, columns = ['PCA 1', 'PCA 2']).join(df[["Activity"]])
+df_pca = pd.DataFrame(X, columns = ['PCA 1', 'PCA 2']).join(df[["Activity"]])
 
-# plt.title("Dataset Asli")
-# sns.scatterplot(x = 'PCA 1', y = 'PCA 2', hue = "Activity", data = df_pca)
-# plt.legend(bbox_to_anchor=(1, 1))
-# plt.tight_layout()
-# plt.savefig('scatter_mobile_sensor_asli.png', dpi=300)
-# plt.show()
+plt.title("Dataset Asli")
+sns.scatterplot(x = 'PCA 1', y = 'PCA 2', hue = "Activity", data = df_pca)
+plt.legend(bbox_to_anchor=(1, 1))
+plt.tight_layout()
+plt.savefig('scatter_mobile_sensor_asli.png', dpi=300)
+plt.show()
 
 # ============================================================================
 
@@ -117,21 +115,21 @@ centroids = kmeans.cluster_centers_
 
 # ----------------------------------------------------------------------------
 
-# df_pca['Cluster'] = labels
-# df_pca['Cluster'] = df_pca['Cluster'].map({0: 'Bergerak', 1: 'Diam'})
+df_pca['Cluster'] = labels
+df_pca['Cluster'] = df_pca['Cluster'].map({0: 'Bergerak', 1: 'Diam'})
 
-# plt.title("Hasil Cluster Dataset Asli")
-# sns.scatterplot(x = "PCA 1", y = "PCA 2", hue = "Cluster", data = df_pca)
-# plt.scatter(
-#     centroids[:, 0], 
-#     centroids[:, 1],
-#     s=250, 
-#     marker='*',
-#     c='red', 
-#     edgecolor='black'
-# )
-# plt.tight_layout()
-# plt.savefig('cluster_mobile_sensor_asli.png', dpi=300)
-# plt.show()
+plt.title("Hasil Cluster Dataset Asli")
+sns.scatterplot(x = "PCA 1", y = "PCA 2", hue = "Cluster", data = df_pca)
+plt.scatter(
+    centroids[:, 0], 
+    centroids[:, 1],
+    s=250, 
+    marker='*',
+    c='red', 
+    edgecolor='black'
+)
+plt.tight_layout()
+plt.savefig('cluster_mobile_sensor_asli.png', dpi=300)
+plt.show()
 
 # ============================================================================

@@ -20,9 +20,6 @@ from time import time
 
 df = pd.read_csv('Mall_Customers.csv', delimiter = ',')
 X = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].values
-# X = df[['0' , '1']].values
-
-# X = X @ np.random.rand(X.shape[1],X.shape[1])
 
 # ============================================================================
 
@@ -116,9 +113,6 @@ trace1 = go.Scatter3d(
     x = df['Age'],
     y = df['Spending Score (1-100)'],
     z = df['Annual Income (k$)'],
-# trace1 = go.Scatter(
-#     x = df['0'],
-#     y = df['1'],
     
     mode = 'markers',
     
@@ -141,8 +135,6 @@ layout = go.Layout(
         xaxis = dict(title = 'Age'),
         yaxis = dict(title = 'Spending Score'),
         zaxis = dict(title = 'Annual Income')
-        # xaxis = dict(title = "RPP 0"),
-        # yaxis = dict(title = "RPP 1")
     )
 )
 
