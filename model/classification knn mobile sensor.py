@@ -16,10 +16,13 @@ from time import time
 
 # ============================================================================
 
-df_train = pd.read_csv('train.csv', delimiter = ',')
+df_train = pd.read_csv('projected2_train.csv', delimiter = ',')
 
 X_train = df_train.drop(['subject', 'Activity'],axis = 1).values
 label_np = df_train['Activity'].values
+
+# X = np.random.rand(X_train.shape[1],X_train.shape[1])
+# X_train = X_train @ X
 
 # ----------------------------------------------------------------------------
 
@@ -30,10 +33,12 @@ y_train = le.fit_transform(label_np)
 
 # ============================================================================
 
-df_test = pd.read_csv('test.csv', delimiter = ',')
+df_test = pd.read_csv('projected2_test.csv', delimiter = ',')
 
 X_test = df_test.drop(['subject', 'Activity'], axis = 1).values
 label_np_test = df_test['Activity'].values
+
+# X_test = X_test @ X
 
 # ----------------------------------------------------------------------------
 
@@ -46,19 +51,22 @@ df_train_test = df_train.append(df_test)
 
 # ----------------------------------------------------------------------------
 
-print(df_train_test.describe())
+pd.options.display.max_columns = 5
+print(df_train_test.drop(['subject'],axis = 1).describe())
 print()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Activities Count")
+plt.title("Distribusi Label (Aktivitas)")
 ax = sns.countplot(x = "Activity", data = df_train_test)
 ax.set_xticklabels(ax.get_xticklabels(), rotation = 20, ha="right")
+plt.tight_layout()
+plt.savefig('distribusi_label_mobile_sensor_asli.png', dpi=300)
 plt.show()
 
 # ============================================================================
 
-neighbors = np.arange(1,21)
+neighbors = np.arange(1,31)
 train_accuracy = np.empty(len(neighbors))
 test_accuracy = np.empty(len(neighbors))
 
@@ -73,24 +81,26 @@ for i,k in enumerate(neighbors):
     
 # ----------------------------------------------------------------------------
     
-plt.title('k-NN Varying number of neighbors')
+plt.title('Dataset Asli')
 plt.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
 plt.plot(neighbors, train_accuracy, label = 'Training accuracy')
 plt.legend()
 plt.xlabel('Number of neighbors')
 plt.ylabel('Accuracy')
+plt.tight_layout()
+plt.savefig('akurasi_mobile_sensor_asli.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-print("Akurasi setiap K pada training set: ")
+print("Akurasi setiap K pada training set dataset asli: ")
 for i, accuracy in enumerate(train_accuracy):
     print(str(i + 1) + ": " + str(accuracy))
 print()
 
 # ----------------------------------------------------------------------------
 
-print("Akurasi setiap K pada test set: ")
+print("Akurasi setiap K pada test set dataset asli: ")
 for i, accuracy in enumerate(test_accuracy):
     print(str(i + 1) + ": " + str(accuracy))
 print()
@@ -125,8 +135,10 @@ y_pred = knn.predict(X_test)
 print("--- Waktu yang dibutuhkan untuk melakukan prediksi adalah %s detik ---" % (time() - start_time))
 print()
 
-plt.title('Confusion Matrix pada Test Set')
+plt.title('Dataset Asli')
 sns.heatmap(confusion_matrix(y_pred, y_test), annot = True, annot_kws={"size": 16}, fmt='g')
+plt.tight_layout()
+plt.savefig('confusion_matrix_mobile_sensor_asli.png', dpi=300)
 plt.show()
 
 # ============================================================================

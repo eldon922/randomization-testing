@@ -20,6 +20,9 @@ from time import time
 
 df = pd.read_csv('Mall_Customers.csv', delimiter = ',')
 X = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].values
+# X = df[['0' , '1']].values
+
+# X = X @ np.random.rand(X.shape[1],X.shape[1])
 
 # ============================================================================
 
@@ -30,12 +33,18 @@ print()
 # ----------------------------------------------------------------------------
 
 sns.pairplot(df, vars = df.columns[2:])
+plt.tight_layout()
+plt.savefig('pairplot_mall_customers_asli.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Heatmap of Variables Correlation")
-sns.heatmap(df.corr(), annot = True, cmap = 'RdYlGn')
+plt.title("Heatmap Korelasi Antar Variabel Dataset asli")
+ax = sns.heatmap(df.corr(), annot = True, cmap = 'RdYlGn')
+ax.set_xticklabels(ax.get_xticklabels(), rotation = 40, ha="right")
+ax.set_yticklabels(ax.get_yticklabels(), rotation = 68, ha="right")
+plt.tight_layout()
+plt.savefig('heatmap_mall_customers_asli.png', dpi=300)
 plt.show()
 
 # ============================================================================
@@ -54,18 +63,22 @@ for k in range(2, kmax + 1):
 
 # ----------------------------------------------------------------------------
     
-plt.title("Elbow Method")
+plt.title("Metode Elbow Dataset asli")
 plt.plot(range(2, kmax + 1), inertia, marker='o')
 plt.xlabel('Number of clusters')
-plt.ylabel('Distortion')
+plt.ylabel('Sum of Squared Error')
+plt.tight_layout()
+plt.savefig('elbow_mall_customers_asli.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Sillhoutte Score")
+plt.title("Sillhoutte Score Dataset asli")
 plt.plot(range(2, kmax + 1), sil, marker='o')
 plt.xlabel('Number of clusters')
 plt.ylabel('Sillhoutte Score')
+plt.tight_layout()
+plt.savefig('siluet_mall_customers_asli.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
@@ -103,12 +116,15 @@ trace1 = go.Scatter3d(
     x = df['Age'],
     y = df['Spending Score (1-100)'],
     z = df['Annual Income (k$)'],
+# trace1 = go.Scatter(
+#     x = df['0'],
+#     y = df['1'],
     
     mode = 'markers',
     
     marker = dict(
         color = df['label'], 
-        size = 20,
+        size = 15,
         line = dict(
             color = df['label'],
             width = 12
@@ -125,6 +141,8 @@ layout = go.Layout(
         xaxis = dict(title = 'Age'),
         yaxis = dict(title = 'Spending Score'),
         zaxis = dict(title = 'Annual Income')
+        # xaxis = dict(title = "RPP 0"),
+        # yaxis = dict(title = "RPP 1")
     )
 )
 
