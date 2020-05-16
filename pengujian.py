@@ -46,9 +46,9 @@ rotated = df_rotated[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].v
 
 for i in range(0, asli.shape[0]):
     for j in range(i, asli.shape[0]):
-        d_asli = round(distance.euclidean(asli[i], asli[j]), 2)
-        d_rotated = round(distance.euclidean(rotated[i], rotated[j]), 2)
-        if d_asli != d_rotated:
+        d_asli = distance.euclidean(asli[i], asli[j])
+        d_rotated = distance.euclidean(rotated[i], rotated[j])
+        if round(d_asli, 3) != round(d_rotated, 3):
             print("------------ERROR: " + str(i+1) + " " + str(j+1) + ": " + 
                   str(d_asli) + " " + str(d_rotated) + " ------------------")
             sys.exit()
