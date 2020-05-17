@@ -18,7 +18,7 @@ from time import time
 
 # ============================================================================
 
-df = pd.read_csv('Mall_Customers.csv', delimiter = ',')
+df = pd.read_csv('rotated_Mall_Customers.csv', delimiter = ',')
 X = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].values
 
 # ============================================================================
@@ -31,17 +31,17 @@ print()
 
 sns.pairplot(df, vars = df.columns[2:])
 plt.tight_layout()
-plt.savefig('pairplot_mall_customers_asli.png', dpi=300)
+plt.savefig('pairplot_mall_customers_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Heatmap Korelasi Antar Variabel Dataset asli")
+plt.title("Heatmap Korelasi Antar Variabel Dataset Diacak")
 ax = sns.heatmap(df.corr(), annot = True, cmap = 'RdYlGn')
 ax.set_xticklabels(ax.get_xticklabels(), rotation = 40, ha="right")
 ax.set_yticklabels(ax.get_yticklabels(), rotation = 68, ha="right")
 plt.tight_layout()
-plt.savefig('heatmap_mall_customers_asli.png', dpi=300)
+plt.savefig('heatmap_mall_customers_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================
@@ -60,22 +60,22 @@ for k in range(2, kmax + 1):
 
 # ----------------------------------------------------------------------------
     
-plt.title("Metode Elbow Dataset asli")
+plt.title("Metode Elbow Dataset Diacak")
 plt.plot(range(2, kmax + 1), inertia, marker='o')
 plt.xlabel('Number of clusters')
 plt.ylabel('Sum of Squared Error')
 plt.tight_layout()
-plt.savefig('elbow_mall_customers_asli.png', dpi=300)
+plt.savefig('elbow_mall_customers_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Sillhoutte Score Dataset asli")
+plt.title("Sillhoutte Score Dataset Diacak")
 plt.plot(range(2, kmax + 1), sil, marker='o')
 plt.xlabel('Number of clusters')
 plt.ylabel('Sillhoutte Score')
 plt.tight_layout()
-plt.savefig('siluet_mall_customers_asli.png', dpi=300)
+plt.savefig('siluet_mall_customers_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------

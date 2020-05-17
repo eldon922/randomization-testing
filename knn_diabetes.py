@@ -16,7 +16,7 @@ from time import time
 
 # ============================================================================
 
-df = pd.read_csv('diabetes.csv', delimiter = ',')
+df = pd.read_csv('rotated_diabetes.csv', delimiter = ',')
 
 X = df.drop('Outcome', axis = 1).values
 y = df['Outcome'].values
@@ -37,18 +37,18 @@ plt.show()
 # ----------------------------------------------------------------------------
 
 g = sns.pairplot(df, hue = "Outcome", vars = df.columns[:-1])
-g.fig.suptitle("Pairplot Seluruh Fitur Dataset Randomisasi", y=1.05, fontsize=75)                       
-plt.savefig('distribusi_kolom_diabetes_randomisasi.png', dpi=300)
+g.fig.suptitle("Pairplot Seluruh Fitur Dataset Diacak", y=1.05, fontsize=75)                       
+plt.savefig('distribusi_kolom_diabetes_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Heatmap Korelasi Antar Variabel Dataset Randomisasi")
+plt.title("Heatmap Korelasi Antar Variabel Dataset Diacak")
 ax = sns.heatmap(df.corr(), annot = True, cmap = 'RdYlGn')
 ax.set_xticklabels(ax.get_xticklabels(), rotation = 23, ha="right")
 ax.set_yticklabels(ax.get_yticklabels(), rotation = 60, ha="right")
 plt.tight_layout()
-plt.savefig('heatmap_diabetes_randomisasi.png', dpi=300)
+plt.savefig('heatmap_diabetes_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================
@@ -72,25 +72,25 @@ for i, k in enumerate(neighbors):
     
 # ----------------------------------------------------------------------------
     
-plt.title('Akurasi Model KNN Dataset Randomisasi')
+plt.title('Akurasi Model KNN Dataset Diacak')
 plt.plot(neighbors, test_accuracy, label = 'Akurasi Test Set')
 plt.plot(neighbors, train_accuracy, label = 'Akurasi Training Set')
 plt.legend()
 plt.xlabel('Jumlah Tetangga (k)')
 plt.ylabel('Akurasi')
-plt.savefig('plot_akurasi_diabetes_randomisasi.png', dpi=300)
+plt.savefig('plot_akurasi_diabetes_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-print("Akurasi setiap K pada training set dataset randomisasi: ")
+print("Akurasi setiap K pada training set dataset diacak: ")
 for i, accuracy in enumerate(train_accuracy):
     print(str(i + 1) + ": " + str(accuracy))
 print()
 
 # ----------------------------------------------------------------------------
 
-print("Akurasi setiap K pada test set dataset randomisasi: ")
+print("Akurasi setiap K pada test set dataset diacak: ")
 for i, accuracy in enumerate(test_accuracy):
     print(str(i + 1) + ": " + str(accuracy))
 print()
@@ -125,9 +125,9 @@ y_pred = knn.predict(X_test)
 print("--- Waktu yang dibutuhkan untuk melakukan prediksi adalah %s detik ---" % (time() - start_time))
 print()
 
-plt.title('Confusion Matrix pada Test Set Dataset Randomisasi')
+plt.title('Confusion Matrix pada Test Set Dataset Diacak')
 sns.heatmap(confusion_matrix(y_pred, y_test), annot = True, annot_kws={"size": 16}, fmt='g')
-plt.savefig('confusion_diabetes_randomisasi.png', dpi=300)
+plt.savefig('confusion_diabetes_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================

@@ -16,7 +16,7 @@ from time import time
 
 # ============================================================================
 
-df_train = pd.read_csv('train.csv', delimiter = ',')
+df_train = pd.read_csv('projected_train.csv', delimiter = ',')
 
 X_train = df_train.drop(['subject', 'Activity'],axis = 1).values
 label_np = df_train['Activity'].values
@@ -30,7 +30,7 @@ y_train = le.fit_transform(label_np)
 
 # ============================================================================
 
-df_test = pd.read_csv('test.csv', delimiter = ',')
+df_test = pd.read_csv('projected_test.csv', delimiter = ',')
 
 X_test = df_test.drop(['subject', 'Activity'], axis = 1).values
 label_np_test = df_test['Activity'].values
@@ -56,7 +56,7 @@ plt.title("Distribusi Label (Aktivitas)")
 ax = sns.countplot(x = "Activity", data = df_train_test)
 ax.set_xticklabels(ax.get_xticklabels(), rotation = 20, ha="right")
 plt.tight_layout()
-plt.savefig('distribusi_label_mobile_sensor_asli.png', dpi=300)
+plt.savefig('distribusi_label_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================
@@ -76,26 +76,26 @@ for i,k in enumerate(neighbors):
     
 # ----------------------------------------------------------------------------
     
-plt.title('Dataset Asli')
+plt.title('Dataset Diacak')
 plt.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
 plt.plot(neighbors, train_accuracy, label = 'Training accuracy')
 plt.legend()
 plt.xlabel('Number of neighbors')
 plt.ylabel('Accuracy')
 plt.tight_layout()
-plt.savefig('akurasi_mobile_sensor_asli.png', dpi=300)
+plt.savefig('akurasi_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-print("Akurasi setiap K pada training set dataset asli: ")
+print("Akurasi setiap K pada training set dataset diacak: ")
 for i, accuracy in enumerate(train_accuracy):
     print(str(i + 1) + ": " + str(accuracy))
 print()
 
 # ----------------------------------------------------------------------------
 
-print("Akurasi setiap K pada test set dataset asli: ")
+print("Akurasi setiap K pada test set dataset diacak: ")
 for i, accuracy in enumerate(test_accuracy):
     print(str(i + 1) + ": " + str(accuracy))
 print()
@@ -130,10 +130,10 @@ y_pred = knn.predict(X_test)
 print("--- Waktu yang dibutuhkan untuk melakukan prediksi adalah %s detik ---" % (time() - start_time))
 print()
 
-plt.title('Dataset Asli')
+plt.title('Dataset Diacak')
 sns.heatmap(confusion_matrix(y_pred, y_test), annot = True, annot_kws={"size": 16}, fmt='g')
 plt.tight_layout()
-plt.savefig('confusion_matrix_mobile_sensor_asli.png', dpi=300)
+plt.savefig('confusion_matrix_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================

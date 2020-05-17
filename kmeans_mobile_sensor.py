@@ -15,7 +15,7 @@ from time import time
 
 # ============================================================================
 
-df = pd.read_csv('train.csv', delimiter = ',')
+df = pd.read_csv('projected_train.csv', delimiter = ',')
 X = df.drop(['subject', 'Activity'], axis = 1).values
 
 # ----------------------------------------------------------------------------
@@ -45,11 +45,11 @@ plt.show()
 
 df_pca = pd.DataFrame(X, columns = ['PCA 1', 'PCA 2']).join(df[["Activity"]])
 
-plt.title("Dataset Asli")
+plt.title("Dataset Diacak")
 sns.scatterplot(x = 'PCA 1', y = 'PCA 2', hue = "Activity", data = df_pca)
 plt.legend(bbox_to_anchor=(1, 1))
 plt.tight_layout()
-plt.savefig('scatter_mobile_sensor_asli.png', dpi=300)
+plt.savefig('scatter_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================
@@ -68,22 +68,22 @@ for k in range(2, kmax + 1):
 
 # ----------------------------------------------------------------------------
     
-plt.title("Dataset Asli")
+plt.title("Dataset Diacak")
 plt.plot(range(2, kmax + 1), inertia, marker='o')
 plt.xlabel('Number of clusters')
 plt.ylabel('Distortion')
 plt.tight_layout()
-plt.savefig('elbow_mobile_sensor_asli.png', dpi=300)
+plt.savefig('elbow_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
 
-plt.title("Sillhoutte Score Dataset Asli")
+plt.title("Sillhoutte Score Dataset Diacak")
 plt.plot(range(2, kmax + 1), sil, marker='o')
 plt.xlabel('Number of clusters')
 plt.ylabel('Sillhoutte Score')
 plt.tight_layout()
-plt.savefig('siluet_mobile_sensor_asli.png', dpi=300)
+plt.savefig('siluet_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ----------------------------------------------------------------------------
@@ -118,7 +118,7 @@ centroids = kmeans.cluster_centers_
 df_pca['Cluster'] = labels
 df_pca['Cluster'] = df_pca['Cluster'].map({0: 'Bergerak', 1: 'Diam'})
 
-plt.title("Hasil Cluster Dataset Asli")
+plt.title("Hasil Cluster Dataset Diacak")
 sns.scatterplot(x = "PCA 1", y = "PCA 2", hue = "Cluster", data = df_pca)
 plt.scatter(
     centroids[:, 0], 
@@ -129,7 +129,7 @@ plt.scatter(
     edgecolor='black'
 )
 plt.tight_layout()
-plt.savefig('cluster_mobile_sensor_asli.png', dpi=300)
+plt.savefig('cluster_mobile_sensor_diacak.png', dpi=300)
 plt.show()
 
 # ============================================================================
