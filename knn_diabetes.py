@@ -57,7 +57,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_
 
 # ----------------------------------------------------------------------------
 
-neighbors = np.arange(1, 21)
+neighbors = np.arange(1, 11)
 train_accuracy = np.empty(len(neighbors))
 test_accuracy = np.empty(len(neighbors))
 
