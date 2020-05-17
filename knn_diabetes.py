@@ -107,7 +107,7 @@ print()
 
 start_time = time()
 
-knn = KNeighborsClassifier(n_neighbors = 16)
+knn = KNeighborsClassifier(n_neighbors = k_highest_test_accuracy)
 knn.fit(X_train, y_train)
 
 print("--- Waktu yang dibutuhkan untuk melatih model adalah %s detik ---" % (time() - start_time))
