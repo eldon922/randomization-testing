@@ -68,9 +68,9 @@ for k in range(2, kmax + 1):
 
 # ----------------------------------------------------------------------------
     
-plt.title("Dataset Diacak")
+plt.title("Metode Elbow Dataset Diacak")
 plt.plot(range(2, kmax + 1), inertia, marker='o')
-plt.xlabel('Number of clusters')
+plt.xlabel('Jumlah Cluster (k)')
 plt.ylabel('Distortion')
 plt.tight_layout()
 plt.savefig('elbow_mobile_sensor_diacak.png', dpi=300)
@@ -80,7 +80,7 @@ plt.show()
 
 plt.title("Sillhoutte Score Dataset Diacak")
 plt.plot(range(2, kmax + 1), sil, marker='o')
-plt.xlabel('Number of clusters')
+plt.xlabel('Jumlah Cluster (k)')
 plt.ylabel('Sillhoutte Score')
 plt.tight_layout()
 plt.savefig('siluet_mobile_sensor_diacak.png', dpi=300)

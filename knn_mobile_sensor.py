@@ -76,12 +76,12 @@ for i,k in enumerate(neighbors):
     
 # ----------------------------------------------------------------------------
     
-plt.title('Dataset Diacak')
-plt.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
-plt.plot(neighbors, train_accuracy, label = 'Training accuracy')
+plt.title('Akurasi Model KNN Dataset Asli')
+plt.plot(neighbors, test_accuracy, label = 'Akurasi Test Set')
+plt.plot(neighbors, train_accuracy, label = 'Akurasi Training Set')
 plt.legend()
-plt.xlabel('Number of neighbors')
-plt.ylabel('Accuracy')
+plt.xlabel('Jumlah Tetangga (k)')
+plt.ylabel('Akurasi')
 plt.tight_layout()
 plt.savefig('akurasi_mobile_sensor_diacak.png', dpi=300)
 plt.show()
